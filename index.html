@@ -6,6 +6,8 @@
 <!-- ar.js -->
 <script src="ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
+<script src="FBXLoader.js"></script>
+<script src="OrbitControls.js"></script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 	
@@ -15,6 +17,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// init renderer
+	var mixers = [];
 	var renderer	= new THREE.WebGLRenderer({
 		// antialias	: true,
 		alpha: true
@@ -158,8 +161,40 @@
 		mesh.rotation.x += 0.1
 	})
 */
+
+		var loader = new THREE.FBXLoader();
+		loader.load( 'moto.fbx', function ( object ) {
+
+			object.mixer = new THREE.AnimationMixer( object );
+			mixers.push( object.mixer );
+
+			var action = object.mixer.clipAction( object.animations[ 0 ] );
+			action.play();
+
+			object.traverse( function ( child ) {
+
+				if ( child.isMesh ) {
+
+					child.castShadow = true;
+					child.receiveShadow = true;
+
+				}
+
+			} );
+
+			scene.add( object );
+
+		} );
 	
-	
+		function animate() {
+			requestAnimationFrame( animate );
+			if ( mixers.length > 0 ) {
+				for ( var i = 0; i < mixers.length; i ++ ) {
+					mixers[ i ].update( clock.getDelta() );
+				}
+			}
+			renderer.render( scene, camera );
+		}
 	
 	
 	//////////////////////////////////////////////////////////////////////////////////
