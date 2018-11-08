@@ -168,9 +168,14 @@
 		mesh.rotation.x += 0.1
 	})
 */
+		var textureLoader = new THREE.TextureLoader();
+		var map = textureLoader.load('italica.jpg');
+		var material = new THREE.MeshPhongMaterial({map: map});
 
+		
+		
 		var loader = new THREE.FBXLoader();
-		loader.load( 'moto 25 c.fbx', function ( object ) {
+		loader.load( 'moto lucesEmbed.fbx', function ( object ) {
 
 			object.mixer = new THREE.AnimationMixer( object );
 			mixers.push( object.mixer );
@@ -184,8 +189,10 @@
 
 					child.castShadow = true;
 					child.receiveShadow = true;
+					child.material = material;
 
 				}
+				
 
 			} );
 			arWorldRoot.add( object );
@@ -226,4 +233,5 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+	animate();
 </script></body>
