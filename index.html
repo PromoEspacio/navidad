@@ -23,6 +23,7 @@
 		// antialias	: true,
 		alpha: true
 	});
+	var light;
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 1/2 );
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -43,13 +44,12 @@
 
 	// Create a camera
 	var camera = new THREE.Camera();
-	//var camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 2000 );
-	//camera.setFocalLength(.1);
-	
-	//camera.position.set( 0, 0, 100 );
-	
-	
 	scene.add(camera);
+	
+	
+	light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+	light.position.set( 0, 200, 0 );
+	scene.add( light );
 
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -113,6 +113,9 @@
 	////////////////////////////////////////////////////////////////////////////////
 	//          Create a ArMarkerControls
 	////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	
 	var markerRoot = new THREE.Group
 	scene.add(markerRoot)
