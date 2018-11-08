@@ -175,7 +175,7 @@
 		
 		
 		var loader = new THREE.FBXLoader();
-		loader.load( 'moto lucesEmbed.fbx', function ( object ) {
+		loader.load( 'moto 180 lucesEmbed.fbx', function ( object ) {
 
 			object.mixer = new THREE.AnimationMixer( object );
 			mixers.push( object.mixer );
@@ -187,8 +187,8 @@
 
 				if ( child.isMesh ) {
 
-					child.castShadow = true;
-					child.receiveShadow = true;
+					//child.castShadow = true;
+					//child.receiveShadow = true;
 					child.material = material;
 
 				}
