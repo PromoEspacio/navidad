@@ -37,7 +37,7 @@
 
 	// init scene and camera
 	var scene	= new THREE.Scene();
-	
+	scene.scale.set(0.001,0.001,0.001);
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,6 @@
 	// update artoolkit on every frame
 	onRenderFcts.push(function(){
 		if( arToolkitSource.ready === false )	return
-
 		arToolkitContext.update( arToolkitSource.domElement )
 	})
 	
@@ -119,19 +118,14 @@
 	
 	var markerRoot = new THREE.Group
 	scene.add(markerRoot)
-	/*var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
-		type : 'pattern',
-		patternUrl :  'patt.hiro'
-		// patternUrl : THREEx.ArToolkitContext.baseURL + 'patt.kanji'
-	})*/
 	var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		type : 'pattern',
 		patternUrl :  'PROMO.patt'
-		// patternUrl : THREEx.ArToolkitContext.baseURL + 'patt.kanji'
 	})
 	// build a smoothedControls
 	var smoothedRoot = new THREE.Group()
 	scene.add(smoothedRoot)
+	
 	var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
 		lerpPosition: 0.4,
 		lerpQuaternion: 0.3,
@@ -178,43 +172,49 @@
 		
 		
 		var loader = new THREE.FBXLoader();
-		loader.load( 'pixiecaminar25.fbx', function ( object ) {
+		loader.load( 'prueba10.fbx', function ( object ) {
 
 			object.mixer = new THREE.AnimationMixer( object );
 			mixers.push( object.mixer );
-
+			
 			var action = object.mixer.clipAction( object.animations[ 0 ] );
 			action.play();
-
+			
 			object.traverse( function ( child ) {
-
 				if ( child.isMesh ) {
-
-					//child.castShadow = true;
-					//child.receiveShadow = true;
 					child.material = material;
-
 				}
-				
-
 			} );
+			//object.scale(0.5,0.5,0.5);
+			//scene.add(onject);
 			arWorldRoot.add( object );
+			
 			var cortina = document.getElementById("cortina");
 			cortina.setAttribute("style", "display:none");
 			//scene.add( object );
 
 		} );
 	
+		onRenderFcts.push(function(){
+			if ( mixers.length > 0 ) {
+				for ( var i = 0; i < mixers.length; i ++ ) {
+					mixers[ i ].update( clock.getDelta() );
+				}
+			}
+			
+		})
+	/*
 		function animate() {
-			requestAnimationFrame( animate );
+			
 			if ( mixers.length > 0 ) {
 				for ( var i = 0; i < mixers.length; i ++ ) {
 					mixers[ i ].update( clock.getDelta() );
 				}
 			}
 			renderer.render( scene, camera );
+			requestAnimationFrame( animate );
 		}
-	
+	*/
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
