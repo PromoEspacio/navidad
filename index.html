@@ -166,13 +166,13 @@
 	})
 */
 		var textureLoader = new THREE.TextureLoader();
-		var map = textureLoader.load('italica.jpg');
+		var map = textureLoader.load('pixietodo.jpg');
 		var material = new THREE.MeshPhongMaterial({map: map});
 
 		
 		
 		var loader = new THREE.FBXLoader();
-		loader.load( 'prueba10.fbx', function ( object ) {
+		loader.load( 'prueba12.fbx', function ( object ) {
 
 			object.mixer = new THREE.AnimationMixer( object );
 			mixers.push( object.mixer );
