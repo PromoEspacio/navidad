@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <!-- three.js library -->
-<script src='three.js'></script>
-<script src="stats.min.js"></script>
+<script  src='https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js'></script>
 <!-- ar.js -->
-<script src="ar.js"></script>
-<script>THREEx.ArToolkitContext.baseURL = '../'</script>
+<script  src="ar.js"></script>
+<script defer>THREEx.ArToolkitContext.baseURL = '../'</script>
 <script src="FBXLoader.js"></script>
-<script src="OrbitControls.js"></script>
 
 
 <script>
@@ -26,9 +24,10 @@ function inicio(){
     inicio3 = document.getElementById("inicio3");
     inicio4 = document.getElementById("inicio4");
 	
+	mostrarSlide();
 	requestAnimationFrame(validarOrientacion);
 	requestAnimationFrame(agrandar);
-	mostrarSlide();
+	requestAnimationFrame(init);
 	
 
 }
@@ -167,8 +166,7 @@ function agrandar(){
 </script>
 <script >
 
-function init(){
-return new Promise(resolve => {
+async function init(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init v2.0
 	//////////////////////////////////////////////////////////////////////////////////
@@ -370,14 +368,14 @@ return new Promise(resolve => {
 		})
 	})
 	animate();
-});	
+	
 }
 
 </script>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();init();">
-<img id="inicio" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;"/>
-<img id="inicio1" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();">
+<img id="inicio" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="iniciov.png"/>
+<img id="inicio1" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" src="inicio1v.png"/>
 <img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
 <img id="inicio3" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
 <img id="inicio4" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" onClick="ocultarInicio();"/>
@@ -388,7 +386,7 @@ return new Promise(resolve => {
 
 
 
-<div id="cortina" style=" background: rgba(54, 54, 54, 0.5);position:absolute;top:0;left:0;z-index:30;width:100%;height:100%;" >
+<div id="cortina" style=" background: rgba(54, 54, 54, 0.5);position:absolute;top:0;left:0;z-index:40;width:100%;height:100%;" >
 			<h1 style="position:absolute;top:50%;left:50%;" >Cargando</h1>
 		</div>
 		</body>
