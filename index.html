@@ -14,11 +14,12 @@ var inicio1;
 var inicio2;
 var inicio3;
 var inicio4;
-var numero = 1;
+var numero = 2;
 var validadorFrame = 1;
 var orientacionAnt = 0; //0 vertical / 1 horizontal
 var orientacionAct = 0;
 
+/*
 if('connection' in navigator){
  if(navigator.connection.saveData){
   alert('ahorro activado');
@@ -26,7 +27,7 @@ if('connection' in navigator){
   alert('ahorro desactivado');
  }
 }
-
+*/
 function inicio(){
 	inicio = document.getElementById("inicio");
     inicio1 = document.getElementById("inicio1");
@@ -35,20 +36,24 @@ function inicio(){
     inicio4 = document.getElementById("inicio4");
 	
 	inicio.src = "iniciov.png";
-	inicio1.src = "inicio1v.png";
-	inicio2.src = "inicio2v.png";
-	inicio3.src = "inicio3v.png";
-	inicio4.src = "inicio4v.png";
+	inicio1.src = "inicio4v.png";
+	inicio2.src = "inicio1v.png";
+	inicio3.src = "inicio2v.png";
+	inicio4.src = "inicio3v.png";
 
-	mostrarSlide();
+	
 	requestAnimationFrame(validarOrientacion);
-	requestAnimationFrame(agrandar);
+	//requestAnimationFrame(agrandar);
 	requestAnimationFrame(init);
 	
 
 }
 
 function mostrarSlide(){
+
+	
+
+
 	if(numero == 1){
 		inicio.style.display="block";
 		inicio1.style.display="block";
@@ -77,13 +82,14 @@ function mostrarSlide(){
 		inicio3.style.display="none";
 		inicio4.style.display="block";
 	}
-	if(numero < 4){
+	if(numero == 5){
+		ocultarInicio();
+	}
+	if(numero < 5){
 		setTimeout(function(){
 			numero++;
 			mostrarSlide(numero)
 		},8000);
-		
-		
 	}
 }
 
@@ -94,16 +100,16 @@ function validarOrientacion(){
     if( orientacionAct != orientacionAnt){
 		if(orientacionAct == 0){
 			inicio.src = "iniciov.png";
-			inicio1.src = "inicio1v.png";
-			inicio2.src = "inicio2v.png";
-			inicio3.src = "inicio3v.png";
-			inicio4.src = "inicio4v.png";
+			inicio1.src = "inicio4v.png";
+			inicio2.src = "inicio1v.png";
+			inicio3.src = "inicio2v.png";
+			inicio4.src = "inicio3v.png";
 		}else{
 			inicio.src = "inicioh.png";
-			inicio1.src = "inicio1h.png";
-			inicio2.src = "inicio2h.png";
-			inicio3.src = "inicio3h.png";
-			inicio4.src = "inicio4h.png";
+			inicio1.src = "inicio4h.png";
+			inicio2.src = "inicio1h.png";
+			inicio3.src = "inicio2h.png";
+			inicio4.src = "inicio3h.png";
 		}
 		inicio.style.width = "100%";
 		inicio.style.height = "100%";
@@ -193,6 +199,20 @@ function agrandar(){
 			inicio3.style.top = top + 'px';
 			
 		}
+		if (numero == 4){
+			width = parseInt(inicio4.width, 10) + incremento;
+			height = parseInt(inicio4.height, 10) + incremento;
+			rect = inicio4.getBoundingClientRect();
+			left = rect.left - incremento;
+			top = rect.top - incremento;
+			
+			//alert(width);
+			inicio4.style.width = width + 'px';
+			inicio4.style.height = height + 'px';
+			inicio4.style.left = left + 'px';
+			inicio4.style.top = top + 'px';
+			
+		}
 		
 		
 		
@@ -201,7 +221,7 @@ function agrandar(){
 	}
 	
 	validadorFrame++;
-	if(numero < 4){
+	if(numero <= 4){
 		requestAnimationFrame(agrandar);
 	}
 }
@@ -220,6 +240,17 @@ function openFullscreen() {
   } else if (elem.msRequestFullscreen) { /* IE/Edge */
     elem.msRequestFullscreen();
   }
+}
+
+function validarMostrarSlide(){
+	var horizontal = window.innerHeight <= window.innerWidth ;
+	
+	if(horizontal){
+		mostrarSlide();
+	
+	}
+	
+
 }
 
 </script>
@@ -434,10 +465,10 @@ async function init(){
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();">
 <img id="inicio" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="iniciov.png"/>
-<img id="inicio1" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" src="inicio1v.png"/>
-<img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
-<img id="inicio3" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
-<img id="inicio4" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" onClick="ocultarInicio();"/>
+<img id="inicio1" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" src="inicio4v.png" onClick="validarMostrarSlide();agrandar();"/>
+<img id="inicio2" style="display:none;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio3" style="display:none;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio4" style="display:none;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" />
 
 <div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 <iframe src="http://promoespacio.com.mx/TarjetaNavidad/index.html" style="width:0;height:0;border:none;"></iframe>	
