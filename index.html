@@ -16,7 +16,8 @@ var inicio3;
 var inicio4;
 var numero = 1;
 var validadorFrame = 1;
-	
+var orientacionAnt = 0; //0 vertical / 1 horizontal
+var orientacionAct = 0;
 function inicio(){
 	inicio = document.getElementById("inicio");
     inicio1 = document.getElementById("inicio1");
@@ -73,18 +74,44 @@ function mostrarSlide(){
 
 function validarOrientacion(){
     
-    if(window.innerHeight > window.innerWidth){
-		inicio.src = "iniciov.png";
-        inicio1.src = "inicio1v.png";
-		inicio2.src = "inicio2v.png";
-		inicio3.src = "inicio3v.png";
-		inicio4.src = "inicio4v.png";
-    }else{
-	    inicio.src = "inicioh.png";
-        inicio1.src = "inicio1h.png";
-		inicio2.src = "inicio2h.png";
-		inicio3.src = "inicio3h.png";
-		inicio4.src = "inicio4h.png";
+	orientacionAct = window.innerHeight > window.innerWidth ? 0 : 1;
+	
+    if( orientacionAct != orientacionAnt){
+		if(orientacionAct == 0){
+			inicio.src = "iniciov.png";
+			inicio1.src = "inicio1v.png";
+			inicio2.src = "inicio2v.png";
+			inicio3.src = "inicio3v.png";
+			inicio4.src = "inicio4v.png";
+		}else{
+			inicio.src = "inicioh.png";
+			inicio1.src = "inicio1h.png";
+			inicio2.src = "inicio2h.png";
+			inicio3.src = "inicio3h.png";
+			inicio4.src = "inicio4h.png";
+		}
+		inicio.style.width = "100%";
+		inicio.style.height = "100%";
+		inicio.style.top = "0";
+		inicio.style.left = "0";
+		inicio1.style.width = "100%";
+		inicio1.style.height = "100%";
+		inicio1.style.top = "0";
+		inicio1.style.left = "0";
+		inicio2.style.width = "100%";
+		inicio2.style.height = "100%";
+		inicio2.style.top = "0";
+		inicio2.style.left = "0";
+		inicio3.style.width = "100%";
+		inicio3.style.height = "100%";
+		inicio3.style.top = "0";
+		inicio3.style.left = "0";
+		inicio4.style.width = "100%";
+		inicio4.style.height = "100%";
+		inicio4.style.top = "0";
+		inicio4.style.left = "0";
+		orientacionAnt = orientacionAct;
+	
 	}
 	
 	requestAnimationFrame(validarOrientacion);
