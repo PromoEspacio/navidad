@@ -18,6 +18,15 @@ var numero = 1;
 var validadorFrame = 1;
 var orientacionAnt = 0; //0 vertical / 1 horizontal
 var orientacionAct = 0;
+
+if('connection' in navigator){
+ if(navigator.connection.saveData){
+  alert('ahorro activado');
+ }else{
+  alert('ahorro desactivado');
+ }
+}
+
 function inicio(){
 	inicio = document.getElementById("inicio");
     inicio1 = document.getElementById("inicio1");
