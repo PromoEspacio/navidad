@@ -29,7 +29,7 @@ function inicio(){
 	requestAnimationFrame(validarOrientacion);
 	requestAnimationFrame(agrandar);
 	mostrarSlide();
-	init();
+	
 
 }
 
@@ -168,7 +168,7 @@ function agrandar(){
 <script >
 
 function init(){
-
+return new Promise(resolve => {
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init v2.0
 	//////////////////////////////////////////////////////////////////////////////////
@@ -297,69 +297,43 @@ function init(){
 
 	var arWorldRoot = smoothedRoot
 
-	
-	/*
-	
-	
-	// add a torus knot	
-	var geometry	= new THREE.CubeGeometry(1,1,1);
-	var material	= new THREE.MeshNormalMaterial({
-		transparent : true,
-		opacity: 0.5,
-		side: THREE.DoubleSide
-	}); 
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= geometry.parameters.height/2
-	arWorldRoot.add( mesh );
-	
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshNormalMaterial(); 
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= 0.5
-	arWorldRoot.add( mesh );
-	
-	onRenderFcts.push(function(){
-		mesh.rotation.x += 0.1
-	})
-*/
-		var textureLoader = new THREE.TextureLoader();
-		var map = textureLoader.load('pixietodo.jpg');
-		var material = new THREE.MeshPhongMaterial({map: map});
+	var textureLoader = new THREE.TextureLoader();
+	var map = textureLoader.load('pixietodo.jpg');
+	var material = new THREE.MeshPhongMaterial({map: map});
 
+	
+	var loader = new THREE.FBXLoader();
+	loader.load( 'prueba13.fbx', function ( object ) {
+
+		object.mixer = new THREE.AnimationMixer( object );
+		mixers.push( object.mixer );
 		
+		var action = object.mixer.clipAction( object.animations[ 0 ] );
+		action.play();
 		
-		var loader = new THREE.FBXLoader();
-		loader.load( 'prueba13.fbx', function ( object ) {
-
-			object.mixer = new THREE.AnimationMixer( object );
-			mixers.push( object.mixer );
-			
-			var action = object.mixer.clipAction( object.animations[ 0 ] );
-			action.play();
-			
-			object.traverse( function ( child ) {
-				if ( child.isMesh ) {
-					child.material = material;
-				}
-			} );
-			//object.scale(0.5,0.5,0.5);
-			//scene.add(onject);
-			arWorldRoot.add( object );
-			
-			var cortina = document.getElementById("cortina");
-			cortina.setAttribute("style", "display:none");
-			//scene.add( object );
-
-		} );
-	
-		onRenderFcts.push(function(){
-			if ( mixers.length > 0 ) {
-				for ( var i = 0; i < mixers.length; i ++ ) {
-					mixers[ i ].update( clock.getDelta() );
-				}
+		object.traverse( function ( child ) {
+			if ( child.isMesh ) {
+				child.material = material;
 			}
-			
-		})
+		} );
+		//object.scale(0.5,0.5,0.5);
+		//scene.add(onject);
+		arWorldRoot.add( object );
+		
+		var cortina = document.getElementById("cortina");
+		cortina.setAttribute("style", "display:none");
+		//alert("cargado");
+		//scene.add( object );
+
+	} );
+	onRenderFcts.push(function(){
+		if ( mixers.length > 0 ) {
+			for ( var i = 0; i < mixers.length; i ++ ) {
+				mixers[ i ].update( clock.getDelta() );
+			}
+		}
+		
+	})
 	/*
 		function animate() {
 			
@@ -396,10 +370,12 @@ function init(){
 		})
 	})
 	animate();
+});	
 }
+
 </script>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();">
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();init();">
 <img id="inicio" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;"/>
 <img id="inicio1" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
 <img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
