@@ -17,11 +17,178 @@
 
   gtag('config', 'UA-122032066-1');
 </script>
-
-
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+<script>
+var inicio;
+var inicio1;
+var inicio2;
+var inicio3;
+var inicio4;
+var numero = 1;
+var validadorFrame = 1;
 	
-</div><script async>
+function inicio(){
+	inicio = document.getElementById("inicio");
+    inicio1 = document.getElementById("inicio1");
+    inicio2 = document.getElementById("inicio2");
+    inicio3 = document.getElementById("inicio3");
+    inicio4 = document.getElementById("inicio4");
+	
+	requestAnimationFrame(validarOrientacion);
+	requestAnimationFrame(agrandar);
+	mostrarSlide();
+
+}
+
+function mostrarSlide(){
+	if(numero == 1){
+		inicio.style.display="block";
+		inicio1.style.display="block";
+		inicio2.style.display="none";
+		inicio3.style.display="none";
+		inicio4.style.display="none";
+	}
+	if(numero == 2){
+		inicio.style.display="block";
+		inicio1.style.display="none";
+		inicio2.style.display="block";
+		inicio3.style.display="none";
+		inicio4.style.display="none";
+	}
+	if(numero == 3){
+		inicio.style.display="block";
+		inicio1.style.display="none";
+		inicio2.style.display="none";
+		inicio3.style.display="block";
+		inicio4.style.display="none";
+	}
+	if(numero == 4){
+		inicio.style.display="block";
+		inicio1.style.display="none";
+		inicio2.style.display="none";
+		inicio3.style.display="none";
+		inicio4.style.display="block";
+	}
+	if(numero < 4){
+		setTimeout(function(){
+			numero++;
+			mostrarSlide(numero)
+		},8000);
+		
+		
+	}
+}
+
+function validarOrientacion(){
+    
+    if(window.innerHeight > window.innerWidth){
+		inicio.src = "iniciov.png";
+        inicio1.src = "inicio1v.png";
+		inicio2.src = "inicio2v.png";
+		inicio3.src = "inicio3v.png";
+		inicio4.src = "inicio4v.png";
+    }else{
+	    inicio.src = "inicioh.png";
+        inicio1.src = "inicio1h.png";
+		inicio2.src = "inicio2h.png";
+		inicio3.src = "inicio3h.png";
+		inicio4.src = "inicio4h.png";
+	}
+	
+	requestAnimationFrame(validarOrientacion);
+}
+
+function ocultarInicio(){
+	inicio.style.display="none";
+	inicio1.style.display="none";
+	inicio2.style.display="none";
+	inicio3.style.display="none";
+	inicio4.style.display="none";
+	
+}
+
+function agrandar(){
+	var width;
+	var height;
+	var left = 0;
+	var top = 0;
+	var incremento = 1;
+	var rect;
+	
+	if(validadorFrame % 5 == 0){
+		if (numero == 1){
+			width = parseInt(inicio1.width, 10) + incremento;
+			height = parseInt(inicio1.height, 10) + incremento;
+			rect = inicio1.getBoundingClientRect();
+			left = rect.left - incremento;
+			top = rect.top - incremento;
+			
+			//alert(width);
+			inicio1.style.width = width + 'px';
+			inicio1.style.height = height + 'px';
+			inicio1.style.left = left + 'px';
+			inicio1.style.top = top + 'px';
+			
+		}
+		if (numero == 2){
+			width = parseInt(inicio2.width, 10) + incremento;
+			height = parseInt(inicio2.height, 10) + incremento;
+			rect = inicio2.getBoundingClientRect();
+			left = rect.left - incremento;
+			top = rect.top - incremento;
+			
+			//alert(width);
+			inicio2.style.width = width + 'px';
+			inicio2.style.height = height + 'px';
+			inicio2.style.left = left + 'px';
+			inicio2.style.top = top + 'px';
+			
+		}
+		if (numero == 3){
+			width = parseInt(inicio3.width, 10) + incremento;
+			height = parseInt(inicio3.height, 10) + incremento;
+			rect = inicio3.getBoundingClientRect();
+			left = rect.left - incremento;
+			top = rect.top - incremento;
+			
+			//alert(width);
+			inicio3.style.width = width + 'px';
+			inicio3.style.height = height + 'px';
+			inicio3.style.left = left + 'px';
+			inicio3.style.top = top + 'px';
+			
+		}
+		
+		
+		
+		validadorFrame = 0;
+	
+	}
+	
+	validadorFrame++;
+	if(numero < 4){
+		requestAnimationFrame(agrandar);
+	}
+}
+
+</script>
+
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio()">
+<img id="inicio" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;"/>
+<img id="inicio1" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio3" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio4" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" onClick="ocultarInicio();"/>
+
+<div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+<iframe src="http://promoespacio.com.mx/TarjetaNavidad/index.html" style="width:0;height:0;border:none;"></iframe>	
+</div>
+
+
+<script async>
+
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init v2.0
 	//////////////////////////////////////////////////////////////////////////////////
