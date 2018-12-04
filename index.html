@@ -9,14 +9,7 @@
 <script src="FBXLoader.js"></script>
 <script src="OrbitControls.js"></script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122032066-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-122032066-1');
-</script>
 <script>
 var inicio;
 var inicio1;
@@ -36,6 +29,7 @@ function inicio(){
 	requestAnimationFrame(validarOrientacion);
 	requestAnimationFrame(agrandar);
 	mostrarSlide();
+	init();
 
 }
 
@@ -171,23 +165,9 @@ function agrandar(){
 }
 
 </script>
+<script >
 
-
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio()">
-<img id="inicio" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;"/>
-<img id="inicio1" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
-<img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
-<img id="inicio3" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
-<img id="inicio4" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" onClick="ocultarInicio();"/>
-
-<div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
-<iframe src="http://promoespacio.com.mx/TarjetaNavidad/index.html" style="width:0;height:0;border:none;"></iframe>	
-</div>
-
-
-<script async>
-
-
+function init(){
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init v2.0
@@ -416,7 +396,22 @@ function agrandar(){
 		})
 	})
 	animate();
+}
 </script>
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();">
+<img id="inicio" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;"/>
+<img id="inicio1" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio3" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio4" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" onClick="ocultarInicio();"/>
+
+<div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+<iframe src="http://promoespacio.com.mx/TarjetaNavidad/index.html" style="width:0;height:0;border:none;"></iframe>	
+</div>
+
+
+
 <div id="cortina" style=" background: rgba(54, 54, 54, 0.5);position:absolute;top:0;left:0;z-index:30;width:100%;height:100%;" >
 			<h1 style="position:absolute;top:50%;left:50%;" >Cargando</h1>
 		</div>
