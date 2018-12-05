@@ -14,12 +14,10 @@ var inicio1;
 var inicio2;
 var inicio3;
 var inicio4;
-var numero = 2;
+var numero = 1;
 var validadorFrame = 1;
 var orientacionAnt = 0; //0 vertical / 1 horizontal
 var orientacionAct = 0;
-
-/*
 if('connection' in navigator){
  if(navigator.connection.saveData){
   alert('ahorro activado');
@@ -27,7 +25,6 @@ if('connection' in navigator){
   alert('ahorro desactivado');
  }
 }
-*/
 function inicio(){
 	inicio = document.getElementById("inicio");
     inicio1 = document.getElementById("inicio1");
@@ -36,24 +33,17 @@ function inicio(){
     inicio4 = document.getElementById("inicio4");
 	
 	inicio.src = "iniciov.png";
-	inicio1.src = "inicio4v.png";
-	inicio2.src = "inicio1v.png";
-	inicio3.src = "inicio2v.png";
-	inicio4.src = "inicio3v.png";
-
-	
+	inicio1.src = "inicio1v.png";
+	inicio2.src = "inicio2v.png";
+	inicio3.src = "inicio3v.png";
+	inicio4.src = "inicio4v.png";
+	mostrarSlide();
 	requestAnimationFrame(validarOrientacion);
-	//requestAnimationFrame(agrandar);
+	requestAnimationFrame(agrandar);
 	requestAnimationFrame(init);
 	
-
 }
-
 function mostrarSlide(){
-
-	
-
-
 	if(numero == 1){
 		inicio.style.display="block";
 		inicio1.style.display="block";
@@ -82,17 +72,15 @@ function mostrarSlide(){
 		inicio3.style.display="none";
 		inicio4.style.display="block";
 	}
-	if(numero == 5){
-		ocultarInicio();
-	}
-	if(numero < 5){
+	if(numero < 4){
 		setTimeout(function(){
 			numero++;
 			mostrarSlide(numero)
 		},8000);
+		
+		
 	}
 }
-
 function validarOrientacion(){
     
 	orientacionAct = window.innerHeight > window.innerWidth ? 0 : 1;
@@ -100,16 +88,16 @@ function validarOrientacion(){
     if( orientacionAct != orientacionAnt){
 		if(orientacionAct == 0){
 			inicio.src = "iniciov.png";
-			inicio1.src = "inicio4v.png";
-			inicio2.src = "inicio1v.png";
-			inicio3.src = "inicio2v.png";
-			inicio4.src = "inicio3v.png";
+			inicio1.src = "inicio1v.png";
+			inicio2.src = "inicio2v.png";
+			inicio3.src = "inicio3v.png";
+			inicio4.src = "inicio4v.png";
 		}else{
 			inicio.src = "inicioh.png";
-			inicio1.src = "inicio4h.png";
-			inicio2.src = "inicio1h.png";
-			inicio3.src = "inicio2h.png";
-			inicio4.src = "inicio3h.png";
+			inicio1.src = "inicio1h.png";
+			inicio2.src = "inicio2h.png";
+			inicio3.src = "inicio3h.png";
+			inicio4.src = "inicio4h.png";
 		}
 		inicio.style.width = "100%";
 		inicio.style.height = "100%";
@@ -137,7 +125,6 @@ function validarOrientacion(){
 	
 	requestAnimationFrame(validarOrientacion);
 }
-
 function ocultarInicio(){
 	inicio.style.display="none";
 	inicio1.style.display="none";
@@ -147,7 +134,6 @@ function ocultarInicio(){
 	openFullscreen();
 	
 }
-
 function agrandar(){
 	var width;
 	var height;
@@ -199,20 +185,6 @@ function agrandar(){
 			inicio3.style.top = top + 'px';
 			
 		}
-		if (numero == 4){
-			width = parseInt(inicio4.width, 10) + incremento;
-			height = parseInt(inicio4.height, 10) + incremento;
-			rect = inicio4.getBoundingClientRect();
-			left = rect.left - incremento;
-			top = rect.top - incremento;
-			
-			//alert(width);
-			inicio4.style.width = width + 'px';
-			inicio4.style.height = height + 'px';
-			inicio4.style.left = left + 'px';
-			inicio4.style.top = top + 'px';
-			
-		}
 		
 		
 		
@@ -221,14 +193,11 @@ function agrandar(){
 	}
 	
 	validadorFrame++;
-	if(numero <= 4){
+	if(numero < 4){
 		requestAnimationFrame(agrandar);
 	}
 }
-
 var elem = document.documentElement;
-
-
 /* View in fullscreen */
 function openFullscreen() {
   if (elem.requestFullscreen) {
@@ -241,27 +210,12 @@ function openFullscreen() {
     elem.msRequestFullscreen();
   }
 }
-
-function validarMostrarSlide(){
-	var horizontal = window.innerHeight <= window.innerWidth ;
-	
-	if(horizontal){
-		openFullscreen();
-		mostrarSlide();
-		
-	}
-	
-
-}
-
 </script>
 <script >
-
 async function init(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init v2.0
 	//////////////////////////////////////////////////////////////////////////////////
-
 	// init renderer
 	var mixers = [];
 	var clock = new THREE.Clock();
@@ -277,17 +231,14 @@ async function init(){
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
 	document.body.appendChild( renderer.domElement );
-
 	// array of functions for the rendering loop
 	var onRenderFcts= [];
-
 	// init scene and camera
 	var scene	= new THREE.Scene();
 	scene.scale.set(0.001,0.001,0.001);
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Initialize a basic camera
 	//////////////////////////////////////////////////////////////////////////////////
-
 	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
@@ -296,24 +247,19 @@ async function init(){
 	light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
 	light.position.set( 0, 200, 0 );
 	scene.add( light );
-
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
 	////////////////////////////////////////////////////////////////////////////////
-
 	var arToolkitSource = new THREEx.ArToolkitSource({
 		// to read from the webcam 
 		sourceType : 'webcam',
-
 		// to read from an image
 		// sourceType : 'image',
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',		
-
 		// to read from a video
 		// sourceType : 'video',
 		// sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/videos/headtracking.mp4',		
 	})
-
 	arToolkitSource.init(function onReady(){
 		onResize()
 	})
@@ -333,7 +279,6 @@ async function init(){
 	//          initialize arToolkitContext
 	////////////////////////////////////////////////////////////////////////////////
 	
-
 	// create atToolkitContext
 	var arToolkitContext = new THREEx.ArToolkitContext({
 		cameraParametersUrl:  'camera_para.dat',
@@ -347,7 +292,6 @@ async function init(){
 		// copy projection matrix to camera
 		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
 	})
-
 	// update artoolkit on every frame
 	onRenderFcts.push(function(){
 		if( arToolkitSource.ready === false )	return
@@ -383,17 +327,13 @@ async function init(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		add an object in the scene
 	//////////////////////////////////////////////////////////////////////////////////
-
 	var arWorldRoot = smoothedRoot
-
 	var textureLoader = new THREE.TextureLoader();
 	var map = textureLoader.load('pixietodo.jpg');
 	var material = new THREE.MeshPhongMaterial({map: map});
-
 	
 	var loader = new THREE.FBXLoader();
 	loader.load( 'prueba13.fbx', function ( object ) {
-
 		object.mixer = new THREE.AnimationMixer( object );
 		mixers.push( object.mixer );
 		
@@ -413,7 +353,6 @@ async function init(){
 		cortina.setAttribute("style", "display:none");
 		//alert("cargado");
 		//scene.add( object );
-
 	} );
 	onRenderFcts.push(function(){
 		if ( mixers.length > 0 ) {
@@ -443,7 +382,6 @@ async function init(){
 	onRenderFcts.push(function(){
 		renderer.render( scene, camera );
 	})
-
 	// run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
@@ -461,15 +399,14 @@ async function init(){
 	animate();
 	
 }
-
 </script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();">
 <img id="inicio" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="iniciov.png"/>
-<img id="inicio1" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" src="inicio4v.png" onClick="validarMostrarSlide();agrandar();"/>
-<img id="inicio2" style="display:none;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
-<img id="inicio3" style="display:none;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
-<img id="inicio4" style="display:none;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" />
+<img id="inicio1" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" src="inicio1v.png"/>
+<img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio3" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
+<img id="inicio4" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" onClick="ocultarInicio();"/>
 
 <div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 <iframe src="http://promoespacio.com.mx/TarjetaNavidad/index.html" style="width:0;height:0;border:none;"></iframe>	
