@@ -9,7 +9,10 @@
 <link rel="manifest" href="manifest.json">
 
 <script>
-var inicio;
+var fondo1;
+var fondo2;
+var fondo3;
+var fondo4;
 var inicio1;
 var inicio2;
 var inicio3;
@@ -22,7 +25,12 @@ var orientacionAct = 0;
 
 
 function inicio(){
-	inicio = document.getElementById("inicio");
+	//inicio = document.getElementById("inicio");
+	fondo1 = document.getElementById("fondo1");
+    fondo2 = document.getElementById("fondo2");
+    fondo3 = document.getElementById("fondo3");
+    fondo4 = document.getElementById("fondo4");
+	
     inicio1 = document.getElementById("inicio1");
     inicio2 = document.getElementById("inicio2");
     inicio3 = document.getElementById("inicio3");
@@ -41,28 +49,40 @@ function inicio(){
 }
 function mostrarSlide(){
 	if(numero == 1){
-		inicio.style.display="block";
+		fondo1.style.display="block";
+		fondo2.style.display="none";
+		fondo3.style.display="none";
+		fondo4.style.display="none";
 		inicio1.style.display="block";
 		inicio2.style.display="none";
 		inicio3.style.display="none";
 		inicio4.style.display="none";
 	}
 	if(numero == 2){
-		inicio.style.display="block";
+		fondo1.style.display="none";
+		fondo2.style.display="block";
+		fondo3.style.display="none";
+		fondo4.style.display="none";
 		inicio1.style.display="none";
 		inicio2.style.display="block";
 		inicio3.style.display="none";
 		inicio4.style.display="none";
 	}
 	if(numero == 3){
-		inicio.style.display="block";
+		fondo1.style.display="none";
+		fondo2.style.display="none";
+		fondo3.style.display="block";
+		fondo4.style.display="none";
 		inicio1.style.display="none";
 		inicio2.style.display="none";
 		inicio3.style.display="block";
 		inicio4.style.display="none";
 	}
 	if(numero == 4){
-		inicio.style.display="block";
+		fondo1.style.display="none";
+		fondo2.style.display="none";
+		fondo3.style.display="none";
+		fondo4.style.display="block";
 		inicio1.style.display="none";
 		inicio2.style.display="none";
 		inicio3.style.display="none";
@@ -83,13 +103,19 @@ function validarOrientacion(){
 	
     if( orientacionAct != orientacionAnt){
 		if(orientacionAct == 0){
-			inicio.src = "iniciov.png";
+			fondo1.src = "fondo1v.png";
+			fondo2.src = "fondo2v.png";
+			fondo3.src = "fondo3v.png";
+			fondo4.src = "fondo4v.png";
 			inicio1.src = "inicio1v.png";
 			inicio2.src = "inicio2v.png";
 			inicio3.src = "inicio3v.png";
 			inicio4.src = "inicio4v.png";
 		}else{
-			inicio.src = "inicioh.png";
+			fondo1.src = "fondo1h.png";
+			fondo2.src = "fondo2h.png";
+			fondo3.src = "fondo3h.png";
+			fondo4.src = "fondo4h.png";
 			inicio1.src = "inicio1h.png";
 			inicio2.src = "inicio2h.png";
 			inicio3.src = "inicio3h.png";
@@ -122,7 +148,11 @@ function validarOrientacion(){
 	requestAnimationFrame(validarOrientacion);
 }
 function ocultarInicio(){
-	inicio.style.display="none";
+	fondo1.style.display="none";
+	fondo2.style.display="none";
+	fondo3.style.display="none";
+	fondo4.style.display="none";
+	
 	inicio1.style.display="none";
 	inicio2.style.display="none";
 	inicio3.style.display="none";
@@ -398,7 +428,10 @@ async function init(){
 </script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;' onload="inicio();">
-<img id="inicio" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="iniciov.png"/>
+<img id="fondo1" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="fondo1v.png"/>
+<img id="fondo2" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="fondo2v.png"/>
+<img id="fondo3" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="fondo3v.png"/>
+<img id="fondo4" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:49;" src="fondo4v.png"/>
 <img id="inicio1" style="display:block;width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;" src="inicio1v.png"/>
 <img id="inicio2" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
 <img id="inicio3" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:50;"/>
