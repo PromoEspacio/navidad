@@ -83,43 +83,43 @@ function inicio(){
 function mostrarSlide(){
 	if(numero == 1){
 		fondo1.style.display="block";
+		inicio1.style.display="block";
 		fondo2.style.display="none";
 		fondo3.style.display="none";
 		fondo4.style.display="none";
-		inicio1.style.display="block";
 		inicio2.style.display="none";
 		inicio3.style.display="none";
 		inicio4.style.display="none";
 	}
 	if(numero == 2){
-		fondo1.style.display="none";
 		fondo2.style.display="block";
+		inicio2.style.display="block";
+		fondo1.style.display="none";
 		fondo3.style.display="none";
 		fondo4.style.display="none";
 		inicio1.style.display="none";
-		inicio2.style.display="block";
 		inicio3.style.display="none";
 		inicio4.style.display="none";
 	}
 	if(numero == 3){
+		fondo3.style.display="block";
+		inicio3.style.display="block";
 		fondo1.style.display="none";
 		fondo2.style.display="none";
-		fondo3.style.display="block";
 		fondo4.style.display="none";
 		inicio1.style.display="none";
 		inicio2.style.display="none";
-		inicio3.style.display="block";
 		inicio4.style.display="none";
 	}
 	if(numero == 4){
+		fondo4.style.display="block";
+		inicio4.style.display="block";
 		fondo1.style.display="none";
 		fondo2.style.display="none";
 		fondo3.style.display="none";
-		fondo4.style.display="block";
 		inicio1.style.display="none";
 		inicio2.style.display="none";
 		inicio3.style.display="none";
-		inicio4.style.display="block";
 	}
 	if(numero < 4){
 		setTimeout(function(){
